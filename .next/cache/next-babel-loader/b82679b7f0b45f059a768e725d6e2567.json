@@ -1,0 +1,1 @@
+{"ast":null,"code":"import * as contentful from \"contentful\";\nexport var client = contentful.createClient({\n  space: 'tc2r8nsdfvnc',\n  accessToken: 'IAmjEbbs5pNyT8Xymrzmse2bTE1rAuMWPrdEgrB99YM'\n});","map":null,"metadata":{},"sourceType":"module"}
