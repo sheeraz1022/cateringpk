@@ -12,25 +12,6 @@ import { client } from '../client';
 
 const useStyles = makeStyles({
     root: {
-        // width: '100%',
-        // height: '100%',
-        // position: 'relative',
-        // backgroundImage: `url('./buffet.jpg')`,
-        // opacity: 1,
-        // display: 'block',
-        // zIndex: -1,
-        // opacity: ,
-        // "&::after":{
-            
-        //     content: '',
-            
-        //     position: 'absolute',
-        //     top: 0,
-        //     left: 0,
-        //     bottom: 0,
-        //     right: 0,
-        //     zIndex: -1, 
-        // }
     },
     paper: {
         opacity: 1,
@@ -49,27 +30,43 @@ const useStyles = makeStyles({
     },
   });
 
+
+  export async function getServerSideProps(context) {
+      console.log('Sheeraz => getServerSideProps');
+    let caterers = [];
+    client.getEntries().then((response) => {
+        console.log('Response ==> ', response)
+        caterers = response.items;
+    }).catch(console.error)
+    return {
+      props: {
+        caterers
+      }, 
+    }
+  }
   
 
-function ListingsPage() {
+function ListingsPage(props) {
     const classes = useStyles();
-    const [caterers, setCaterers] = useState([]);
+    console.log('Sheeraz => props', props);
+    const { caterers } = props;
+    // const [caterers, setCaterers] = useState([]);
 
    
 
-    useEffect(() => {
-        client.getEntries().then((response) => {
-            console.log('Response ==> ', response)
-            setCaterers(response.items);
-        }).catch(console.error)
-    }, [])
+    // useEffect(() => {
+    //     client.getEntries().then((response) => {
+    //         console.log('Response ==> ', response)
+    //         setCaterers(response.items);
+    //     }).catch(console.error)
+    // }, [])
 
    
 
     return (
     <Fragment>
         <MyAppBar />
-            <img src="./buffet.jpg" height="400px" width="100%"/>
+            <img src="./bg_image.jpg" height="600px" width="100%"/>
             <Container className={classes.root}>
             <Paper>
             
@@ -89,6 +86,8 @@ function ListingsPage() {
     </Fragment>
     )
 }
+
+
 
 ListingsPage.propTypes = {
 
