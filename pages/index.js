@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import ListingsPage from '../components/ListingsPage';
 import { makeStyles } from '@material-ui/core/styles';
 import MyAppBar from '../components/MyAppBar'
@@ -30,24 +30,35 @@ const useStyles = makeStyles({
 });
 
 
-export async function getServerSideProps() {
-  console.log('Sheeraz => getServerSideProps');
-  let caterers = [];
-  const response = await client.getEntries();
-  caterers = response.items;
+// export async function getServerSideProps() {
+//   console.log('Sheeraz => getServerSideProps');
+//   let caterers = [];
+//   const response = await client.getEntries();
+//   caterers = response.items;
 
-  return {
-    props: {
-      caterers
-    }
-  }
-}
+//   return {
+//     props: {
+//       caterers
+//     }
+//   }
+// }
 
 
 const Index = (props) => {
   const classes = useStyles();
-  console.log('Sheeraz => props', props.caterers);
-  const { caterers } = props;
+  
+  const [caterers, setCaterers] = useState([]);
+
+   
+
+  useEffect(() => {
+      client.getEntries().then((response) => {
+          console.log('Response ==> ', response)
+          setCaterers(response.items);
+      }).catch(console.error)
+  }, [])
+
+  // const { caterers } = props;
   return  (
     <Fragment>
         <MyAppBar />
