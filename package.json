@@ -9,6 +9,7 @@
     "@material-ui/icons": "^4.9.1",
     "babel-plugin-styled-components": "latest",
     "contentful": "^7.14.14",
+    "lodash": "^4.17.20",
     "next": "canary",
     "prop-types": "latest",
     "react": "latest",

@@ -1,1 +1,0 @@
-{"ast":null,"code":"const theme = {\n  primary: '#ffc600'\n};\nexport default theme;","map":null,"metadata":{},"sourceType":"module"}

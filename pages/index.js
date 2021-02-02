@@ -1,5 +1,4 @@
 import React, {Fragment, useState, useEffect} from 'react';
-import ListingsPage from '../components/ListingsPage';
 import { makeStyles } from '@material-ui/core/styles';
 import MyAppBar from '../components/MyAppBar'
 import Grid from '@material-ui/core/Grid'
@@ -8,9 +7,13 @@ import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Listing from '../components/Listing'
 import { client } from '../client';
+import _ from 'lodash';
 
 const useStyles = makeStyles({
   root: {
+      backgroundColor: "#FFFFFF",
+      padding: 0,
+      
   },
   paper: {
       opacity: 1,
@@ -53,8 +56,21 @@ const Index = (props) => {
 
   useEffect(() => {
       client.getEntries().then((response) => {
-          console.log('Response ==> ', response)
-          setCaterers(response.items);
+          console.log('Response ==> ', response);
+          console.log('items ==> ', response.items);
+          let listings = [];
+          listings = response.items.map((item) => {
+              const { name, rate, speciality, description, images=[] } = item.fields;
+              return {
+                  name,
+                  rate,
+                  speciality,
+                  description,
+                  images: images.map((imageItem) => imageItem.fields.file.url)
+              }  
+          })
+          console.log('listings ==> ', listings);
+          setCaterers(listings);
       }).catch(console.error)
   }, [])
 
@@ -62,22 +78,24 @@ const Index = (props) => {
   return  (
     <Fragment>
         <MyAppBar />
-            <img src="./bg_image.jpg" height="600px" width="100%"/>
+            <img style={{backgroundColor: "#e5e5e5"}} src="./bg_image.jpg" height="600px" width="100%"/>
+            <div style={{backgroundColor: "#e5e5e5"}}>
             <Container className={classes.root}>
-            <Paper>
+            <Paper style={{backgroundColor: "#e5e5e5"}}>
             
             <Typography className={classes.heading} variant="h5" display="block">
                 Catering Services in Karachi
             </Typography>
-            <Grid container spacing={8}>
-                {caterers.map(({fields: {name, rate, speciality, description, image: {fields: {file: url}}}}) => { 
-                    return <Grid item>
-                        <Listing rate={rate} heading={name} speciality={speciality} description={description} image={url}/>
+            <Grid container spacing={8} style={{display: "block"}}>
+                {/* {caterers.map(({fields: {name, rate, speciality, description, image: {fields: {file: url}}}}) => {  */}
+                {caterers.map(({name, rate, speciality, description, images}) => <Grid item>
+                        <Listing rate={rate} heading={name} speciality={speciality} description={description} images={images}/>
                     </Grid>
-                })}
+                )}
             </Grid>
             </Paper>
             </Container>
+            </div>
             
     </Fragment> )
  

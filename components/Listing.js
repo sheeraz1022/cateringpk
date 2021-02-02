@@ -56,7 +56,7 @@ const openWhatsApp = () =>{
   window.open('https://web.whatsapp.com/send?phone=60173920363&text=Hi%0A%0AI%20have%20got%20your%20information%20from%20Catering%20PK.', '_blank');
 }
 
-export function Listing({heading, rate, speciality, description, image: {url}}) {
+export function Listing({heading, rate, speciality, description, images }) {
   const classes = useStyles();
   
   console.log('description before', description);
@@ -84,18 +84,13 @@ export function Listing({heading, rate, speciality, description, image: {url}}) 
       />
       
         <Carousel animation="slide" navButtonsAlwaysVisible={true} autoPlay={false}>
-          <CardMedia
+          {images.map(image => <CardMedia
             key={1}
             className={classes.media}
-            image={url}
+            image={image}
             title="Contemplative Reptile"
-          />
-            <CardMedia
-            key={2}
-            className={classes.media}
-            image={url}
-            title="Contemplative Reptile"
-          />
+          />)}
+          
         </Carousel>
         <CardActionArea>
          <CardContent>
@@ -134,10 +129,10 @@ export function Listing({heading, rate, speciality, description, image: {url}}) 
       </CardActionArea>
       <CardActions style={{justifyContent:'space-between'}}>
         <Paper elevation={0}>
-        <IconButton color="primary" aria-label="facebook" component="span" onClick={openFB}>
+        <IconButton style={{color: "#D51365"}} aria-label="facebook" component="span" onClick={openFB}>
             <FacebookIcon />
         </IconButton>
-        <IconButton color="primary" aria-label="whatsapp" component="span" onClick={openWhatsApp}>
+        <IconButton style={{color: "#D51365"}} aria-label="whatsapp" component="span" onClick={openWhatsApp}>
             <WhatsAppIcon />
         </IconButton>
       </Paper>
