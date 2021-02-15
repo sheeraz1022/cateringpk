@@ -4,11 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@apollo/client": "^3.3.9",
     "@contentful/rich-text-react-renderer": "^14.1.2",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "babel-plugin-styled-components": "latest",
     "contentful": "^7.14.14",
+    "graphql": "^15.5.0",
     "lodash": "^4.17.20",
     "next": "canary",
     "prop-types": "latest",
