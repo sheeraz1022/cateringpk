@@ -1,10 +1,7 @@
-import React from 'react'
-import Layout from '../../components/Layout'
-
-
+import React from "react";
+import Layout from "../../components/Layout";
 
 // export async function getStaticPaths() {
-
 
 //     return {
 //       paths: [
@@ -14,14 +11,12 @@ import Layout from '../../components/Layout'
 //     };
 //   }
 
- const ListingDetail = () => {
-    return (
-        <div>
-            <Layout>
-                Test 123
-            </Layout>
-        </div>
-    )
-}
+const ListingDetail = () => {
+  return (
+    <div>
+      <Layout>Test 123</Layout>
+    </div>
+  );
+};
 
-export default ListingDetail
+export default ListingDetail;
