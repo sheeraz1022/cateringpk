@@ -30,7 +30,8 @@
     "eslint-plugin-jsx-a11y": "latest",
     "eslint-plugin-prettier": "latest",
     "eslint-plugin-react": "latest",
-    "prettier": "latest"
+    "prettier": "latest",
+    "util": "^0.12.3"
   },
   "scripts": {
     "dev": "next",

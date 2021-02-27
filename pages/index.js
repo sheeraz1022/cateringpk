@@ -75,9 +75,6 @@ const Index = (props) => {
 
   const { loading, error, data } = useQuery(MY_QUERY);
 
-  console.log("Sheeraz => loading", loading);
-  console.log("Sheeraz => error", error);
-  console.log("Sheeraz => data", data);
   if (error) return <div>Error loading players.</div>;
   if (loading) return <div>Loading</div>;
 
